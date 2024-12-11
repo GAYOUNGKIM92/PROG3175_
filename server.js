@@ -52,6 +52,19 @@ app.get('/cars/:id', (req, res) => {
     }
   });
 
+  // Update 
+app.put('/cars/:id', (req, res) => {
+    const cars = readCarsFromFile();
+    const index = cars.findIndex(c => c.id === req.params.id);
+    if (index !== -1) {
+      cars[index] = new Car(req.params.id, req.body.make, req.body.model, req.body.year);
+      writeCarsToFile(cars);
+      res.json(cars[index]);
+    } else {
+      res.status(404).json({ message: 'Car not found' });
+    }
+  });
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
