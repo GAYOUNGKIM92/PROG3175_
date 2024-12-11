@@ -65,6 +65,14 @@ app.put('/cars/:id', (req, res) => {
     }
   });
 
+  // Delete 
+app.delete('/cars/:id', (req, res) => {
+    let cars = readCarsFromFile();
+    cars = cars.filter(c => c.id !== req.params.id);
+    writeCarsToFile(cars);
+    res.status(204).end();
+  });
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
