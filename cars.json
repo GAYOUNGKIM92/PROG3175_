@@ -4,5 +4,11 @@
     "make": "Hyundai",
     "model": "sonata",
     "year": "2010"
+  },
+  {
+    "id": "2",
+    "make": "Kia",
+    "model": "Sportage",
+    "year": "2022"
   }
 ]

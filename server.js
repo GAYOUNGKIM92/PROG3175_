@@ -35,6 +35,22 @@ app.post("/cars", (req, res) => {
   res.status(201).json(newCar);
 });
 
+// Read
+app.get('/cars', (req, res) => {
+    const cars = readCarsFromFile();
+    res.json(cars);
+  });
+
+  // Get a car by id
+app.get('/cars/:id', (req, res) => {
+    const cars = readCarsFromFile();
+    const car = cars.find(c => c.id === req.params.id);
+    if (car) {
+      res.json(car);
+    } else {
+      res.status(404).json({ message: 'Car not found' });
+    }
+  });
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
